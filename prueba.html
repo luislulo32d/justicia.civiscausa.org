@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copiar al Portapapeles</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+ <div class="container mt-5">
+    <p id="texto_a_copiar">Este es el texto que se puede copiar al portapapeles.</p>
+    <button onclick="copiarAlPortapapeles()" class="btn btn-light"><img id="clipboardIcon" src="assets/b-icon-clipboard.png" alt="Icono de portapapeles" width="12" height="16"></button>
+  </div>
+
+  <script>
+    function copiarAlPortapapeles() {
+      var texto = document.getElementById('texto_a_copiar').innerText;
+      var icono = document.getElementById('clipboardIcon');
+      var iconoOriginal = icono.src;
+      icono.src = 'assets/b-icon-clipboard-check.png';
+      setTimeout(function() {
+        icono.src = iconoOriginal;
+      }, 2000); // Cambia la imagen por 2 segundos (2000 milisegundos)
+      navigator.clipboard.writeText(texto)
+        .then(() => {
+          // alert('¡Texto copiado al portapapeles!');
+        })
+        .catch(err => {
+          console.error('Error al copiar el texto: ', err);
+        });
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
